@@ -63,10 +63,27 @@ class note:
         finally:
             cursor.close()
             conn.close()
+    def calculeMoyenneClass(self,codeCour):
+        try:
+            conn = db.get_connection()
+            cursor = conn.cursor()
+            query = "SELECT SUM(note) as sum FROM note WHERE codeCour = %s"
+            dataNote = (codeCour)
+            cursor.execute(query,dataNote)
+            conn.commit()
+            print("Total rows deleted: %d" % cursor.fetchone()[0])
+        except error as error:
+            print(error)
+        finally:
+            cursor.close()
+            conn.close()
+
+
 n = note()
 #n.ajouterNote('utc_503','3',15)
 #n.suprimeNote(2)
-n.editNote(3,18)
+#n.editNote(3,18)
+n.calculeMoyenneClass('utc_503')
 
 
 
