@@ -65,9 +65,9 @@ class etudiants:
             cursor.close()
             conn.close()
 a = etudiants()
-#a.ajouterEtudiant('Mohamad','Ahmad','A')
-#a.suprimeEtudiant(1)
-a.editEtudiant(2,'Bader','Hamoud','c')
+a.ajouterEtudiant('Bader','Hamoud','B')
+#a.suprimeEtudiant(2)
+#a.editEtudiant(2,'Bader','Hamoud','c')
 
 
 

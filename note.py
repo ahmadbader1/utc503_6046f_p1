@@ -34,8 +34,8 @@ class note:
         finally:
             cursor.close()
             conn.close()
-    def suprimeCour(self,id):
-        query = "DELETE FROM cours WHERE id= %s"
+    def suprimeNote(self,id):
+        query = "DELETE FROM note WHERE id= %s"
         data = (id)
         try:
             conn = db.get_connection()
@@ -49,24 +49,24 @@ class note:
             cursor.close()
             conn.close()
 
-    def editCour(self,id,code,nom,niveau):
-        query = " UPDATE cours SET code = %s,nom = %s,niveau = %s WHERE id = %s "
-        data = (code, nom, niveau,id)
+    def editNote(self,id,note):
+        query = " UPDATE note SET note = %s WHERE id = %s "
+        data = (note,id)
         try:
             conn = db.get_connection()
             cursor = conn.cursor()
             cursor.execute(query, data)
             conn.commit()
-            print('Cour: %d' % id + ' Updated')
+            print('Note: %d' % id + ' Updated')
         except error as error:
             print(error)
         finally:
             cursor.close()
             conn.close()
 n = note()
-n.ajouterNote('utc_503','2',15)
+#n.ajouterNote('utc_503','3',15)
 #n.suprimeNote(2)
-#n.editNote(2,'GDN100','Management','B')
+n.editNote(3,18)
 
 
 
