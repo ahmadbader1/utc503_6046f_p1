@@ -84,6 +84,25 @@ class note:
         finally:
             cursor.close()
             conn.close()
+    def calculeMoyenneEtudiant(self,codeEtudiant):
+        try:
+            conn = db.get_connection()
+            cursor = conn.cursor()
+            query = "SELECT SUM(note) as sum FROM note WHERE etudiantId = %s"
+            dataNote = (codeEtudiant)
+            cursor.execute(query,dataNote)
+            cursor2 = conn.cursor()
+            query2 = "SELECT * FROM note WHERE etudiantId = %s"
+            dataNote = (codeEtudiant)
+            cursor2.execute(query2,dataNote)
+            count = cursor2.rowcount
+            conn.commit()
+            print("Moyenne: %d" %float(cursor.fetchone()[0]/float(count)) )
+        except error as error:
+            print(error)
+        finally:
+            cursor.close()
+            conn.close()
 
 
 n = note()
@@ -91,6 +110,7 @@ n = note()
 #n.suprimeNote(2)
 #n.editNote(3,18)
 n.calculeMoyenneClass('utc_503')
+n.calculeMoyenneEtudiant(5)
 
 
 
