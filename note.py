@@ -1,4 +1,6 @@
+from __future__ import division
 import dbConnection as db
+
 
 class note:
     codeCour: str 
@@ -70,8 +72,13 @@ class note:
             query = "SELECT SUM(note) as sum FROM note WHERE codeCour = %s"
             dataNote = (codeCour)
             cursor.execute(query,dataNote)
+            cursor2 = conn.cursor()
+            query2 = "SELECT * FROM note WHERE codeCour = %s"
+            dataNote = (codeCour)
+            cursor2.execute(query2,dataNote)
+            count = cursor2.rowcount
             conn.commit()
-            print("Total rows deleted: %d" % cursor.fetchone()[0])
+            print("Moyenne: %d" %float(cursor.fetchone()[0]/float(count)) )
         except error as error:
             print(error)
         finally:
@@ -80,13 +87,10 @@ class note:
 
 
 n = note()
-n.ajouterNote('utc_504','5',19)
-n.ajouterNote('utc_502','5',17)
-n.ajouterNote('utc_503','5',16)
-n.ajouterNote('utc_501','5',13)
+#n.ajouterNote('utc_504','5',19)
 #n.suprimeNote(2)
 #n.editNote(3,18)
-#n.calculeMoyenneClass('utc_503')
+n.calculeMoyenneClass('utc_503')
 
 
 
