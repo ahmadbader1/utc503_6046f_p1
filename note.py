@@ -80,10 +80,13 @@ class note:
 
 
 n = note()
-#n.ajouterNote('utc_503','3',15)
+n.ajouterNote('utc_504','5',19)
+n.ajouterNote('utc_502','5',17)
+n.ajouterNote('utc_503','5',16)
+n.ajouterNote('utc_501','5',13)
 #n.suprimeNote(2)
 #n.editNote(3,18)
-n.calculeMoyenneClass('utc_503')
+#n.calculeMoyenneClass('utc_503')
 
 
 
